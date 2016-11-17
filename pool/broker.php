@@ -8,6 +8,9 @@ namespace Pool;
  * from the pool. This worker script should accept two arguments: the tasks' job's id and the number of pending tasks to be
  * performed. Actually, those are the parameters to be passed to worker object's execute method {@see Pool\Worker::execute}
  * and finally to the manager's collectTasks method {@see Pool\Manager::collectTasks)
+ *
+ * @package db-pool
+ * @author romansg
  */
 class Broker
 {
