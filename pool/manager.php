@@ -73,7 +73,7 @@ class Manager
 	 *
 	 * @param integer Owner job's id
 	 * @param integer $count Number of task to be retrieved (-1 means all tasks)
-	 * @return array Numeric array of tasks
+	 * @return array Array of tasks indexed by taskId
 	 */
 	public function collectTasks($jobId, $count = -1) {
 		// Signature to mark tasks as reserved
