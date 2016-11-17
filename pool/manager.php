@@ -69,7 +69,7 @@ class Manager
 	 *
 	 * This method collects pending tasks (tasks that have not been processed) associated with a given job and reserve them
 	 * so that no other process can pick them. Once a task is collected it should be dispatched and marked as done or failed
-	 * @see Pool\Manager::closeTask
+	 * {@see Pool\Manager::closeTask} that is, it cannot be "returned" to the pool.
 	 *
 	 * @param integer Owner job's id
 	 * @param integer $count Number of task to be retrieved (-1 means all tasks)
