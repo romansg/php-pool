@@ -1,5 +1,7 @@
 #
 # MySQL pool database structure
+# @package db-pool
+# @author romansg
 #
 
 create table `job` (
