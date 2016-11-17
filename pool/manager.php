@@ -1,4 +1,5 @@
 <?php
+namespace Pool;
 
 /**
  * Interface to the pool
