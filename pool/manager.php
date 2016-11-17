@@ -3,6 +3,8 @@ namespace Pool;
 
 /**
  * Interface to the pool
+ * @package db-pool
+ * @author romansg
  */
 class Manager
 {
