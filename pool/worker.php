@@ -4,7 +4,7 @@ namespace Pool;
 /**
  * Handles a job's tasks to be processed
  *
- * This is an abstract class that implements the cycling through tasks. The actual work must be implemented by derived
+ * This abstract class implements the cycling through tasks to perform them. The actual work must be implemented by derived
  * classes.
  */
 abstract class Worker
