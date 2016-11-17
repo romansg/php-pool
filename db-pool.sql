@@ -1,5 +1,5 @@
 #
-# MySQLpool  database structure
+# MySQL pool database structure
 #
 
 create table `job` (
