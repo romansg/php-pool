@@ -6,6 +6,9 @@ namespace Pool;
  *
  * This abstract class implements the cycling through tasks to perform them. The actual work must be implemented by derived
  * classes.
+ *
+ * @package db-pool
+ * @author romansg
  */
 abstract class Worker
 {
