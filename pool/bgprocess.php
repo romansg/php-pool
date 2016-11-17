@@ -3,6 +3,9 @@ namespace Pool;
 
 /**
  * Implements a process running in the background (only unix I am afraid)
+ *
+ * @package db-pool
+ * @author romansg
  */
 class BgProcess
 {
