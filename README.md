@@ -3,9 +3,11 @@ A pool to store jobs and tasks to be processed later in the background.
 
 ## Description
 
-**php-pool** implements a pool of tasks and jobs with a database backend. A pool is not a queue but merely a repository where jobs can be stored for later retrieval by a worker that can be run in the background.
+**php-pool** implements a pool of tasks and jobs with a database backend. A pool is not a queue but merely a repository where jobs and its related tasks can be stored for later retrieval and processing by one or more workers running in the background.
 
-Jobs and tasks can be added via a web interface and a worker can be started in the background to perform tasks and thus releasing the web interface, which is convenient for lengthy processes.
+Jobs and tasks can be anything you need; strings, arrays, objects. php-pool is agnostic of their nature.
+
+The main goal of **php-pool** is to run lengthy processes in the background without blocking the user interface.
 
 ## Basic use
 
