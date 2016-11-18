@@ -22,3 +22,12 @@ foreach ($tasks as $task) {
 ```
 
 Here, $job and $task(s) could be anything you like; strings, objects, anything that fit the master-detail relation: jobs are made out of tasks.
+
+### Start a worker script in the background
+
+```php
+$bgprocess = new \Pool\BgProcess('/usr/local/bin/php worker.php');
+$bgprocess->execute(count($tasks));
+```
+
+$bgprocess is instantiated with a call to the php executable passing the worker script as an argument. The execute method receives the script's arguments, in this case, the number of tasks to be processed.
