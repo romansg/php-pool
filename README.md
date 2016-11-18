@@ -27,7 +27,35 @@ Here, $job and $task(s) could be anything you like; strings, objects, anything t
 
 ```php
 $bgprocess = new \Pool\BgProcess('/usr/local/bin/php worker.php');
-$bgprocess->execute(count($tasks));
+$bgprocess->execute($jobId, count($tasks));
 ```
 
-$bgprocess is instantiated with a call to the php executable passing the worker script as an argument. The execute method receives the script's arguments, in this case, the number of tasks to be processed.
+$bgprocess is instantiated with a call to the php executable passing the worker script as an argument. The execute method receives the script's arguments, in this case, the job's id and the number of tasks to be processed. The worker script should default the second argument to all tasks, so we could simply code:
+
+```php
+$bgprocess->execute($jobId);
+```
+
+if we want to perform all job's tasks in a row.
+
+### Using a broker to split the process
+
+The second argument passed to the worker script allows you to split the process into several threads to have the work done faster:
+
+´´´php
+$total = count($tasks);
+
+$bgprocess->execute($jobId, $total/2);
+$bgprocess->execute($jobId, $total/2);
+´´´
+
+The first worker will perform half of the pending tasks and the second one will perform the other half because the first half is already reserved.
+
+You can split task processing in as many parts as you want or as system resources permit. To facilitate the splitting use a broker:
+
+´´´php
+$broker = new \Pool\Broker($bgprocess, $parts);
+$broker->execute($jobId, count($tasks), $parts);
+´´´
+
+The broker will start $parts number of processes dividing count($tasks) homogeneously.
