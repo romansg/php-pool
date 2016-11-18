@@ -59,3 +59,60 @@ $broker->execute($jobId, count($tasks), $parts);
 ```
 
 The broker will start $parts number of processes dividing count($tasks) homogeneously.
+
+### The worker script
+
+The worker script instantiates and execute a suitable worker object, that is, an instance of a suitable \Pool\Worker derived class:
+
+```php
+// Read command line arguments
+$jobId = isset($argv[1]) ? $argv[1] : 0;
+$count = isset($argv[2]) ? $argv[2] : -1; // -1 means process all tasks
+
+// Do some validation
+if (!is_int($jobId) || $jobId <= 0) {
+	die("Missing or invalid parameter: jobId\n");
+}
+
+if (!is_int($count) {
+	die("Invalid parameter: count\n");
+}
+
+if ($count == 0) {
+	exit("Nothing to do\n");
+}
+
+// Connect to the pool
+$manager = new \Pool\Manager($dsn, 'someuser', 'somepassword');
+
+// Execute worker
+$worker = new CustomWorker($manager);
+$worker->execute($jobId, $count);
+```
+
+CustomWorker is implemented by you to perform your specific job and tasks.
+
+### The worker object
+
+A CustomWorker implements \Pool\Worker::initialize() and \Pool\Worker::perform() methods:
+
+```php
+class CustomWorker extends \Pool\Worker
+{
+	protected function initialize($job) {
+		//
+		// Do whatever initialization you need
+		//
+	}
+	
+	protected function perform($task) {
+		//
+		// Called for each task
+		//
+	}
+}
+```
+
+So, here is where the real job is done. The $job and $task parameters are in the exact format they were originally stored in the pool. Therefore, if they correspond to objects, its classes must have been already loaded.
+
+Be aware that the initialization method is called whenever the worker is instantiated and thus, it can be invoked more than once if you split the task processing into several workers.
