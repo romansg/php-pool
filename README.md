@@ -42,20 +42,20 @@ if we want to perform all job's tasks in a row.
 
 The second argument passed to the worker script allows you to split the process into several threads to have the work done faster:
 
-´´´php
+```php
 $total = count($tasks);
 
 $bgprocess->execute($jobId, $total/2);
 $bgprocess->execute($jobId, $total/2);
-´´´
+````
 
 The first worker will perform half of the pending tasks and the second one will perform the other half because the first half is already reserved.
 
 You can split task processing in as many parts as you want or as system resources permit. To facilitate the splitting use a broker:
 
-´´´php
+```php
 $broker = new \Pool\Broker($bgprocess, $parts);
 $broker->execute($jobId, count($tasks), $parts);
-´´´
+```
 
 The broker will start $parts number of processes dividing count($tasks) homogeneously.
