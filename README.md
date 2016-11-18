@@ -20,3 +20,5 @@ foreach ($tasks as $task) {
 	$manager->addTask($jobId, $task);
 }
 ```
+
+Here, $job and $task(s) could be anything you like; strings, objects, anything that fit the master-detail relation: jobs are made out of tasks.
