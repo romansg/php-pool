@@ -113,8 +113,12 @@ class CustomWorker extends \Pool\Worker
 }
 ```
 
-So, here is where the real job is done. The $job and $task parameters are in the exact format they were originally stored in the pool. Therefore, if they correspond to objects, its classes must have been already loaded.
+So, here is where the real job is done. The $job and $task parameters are in the exact format they were originally stored in the pool. Therefore, if they correspond to objects, their class definitions must have been already loaded.
 
 Be aware that the initialization method is called whenever the worker is instantiated and thus, it can be invoked more than once if you split the task processing into several workers.
 
 Also notice that the perform method must return true on sucess and false otherwise.
+
+## Some Details
+
+Here we will explain some details about the pool and its database backend.
