@@ -22,7 +22,7 @@ foreach ($tasks as $task) {
 }
 ```
 
-Here, $job and $task(s) could be anything you like; strings, objects, anything that fit the master-detail relation: jobs are made out of tasks.
+As said above, $job and $task(s) could be any data that fits the master-detail relation: jobs are made out of tasks.
 
 ### Start a worker script in the background
 
