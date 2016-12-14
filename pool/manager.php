@@ -16,8 +16,8 @@ class Manager
 	 * Constructor.
 	 * Builds a PDO object with given dsn and credentials. Prepare some frequent statements.
 	 */
-	public function __construct($dsn, $user = '', $password = '') {
-		$this->pdo = new \PDO($dsn, $user, $password);
+	public function __construct(\PDO $pdo) {
+		$this->pdo = $pdo;
 
 		$this->stmtAddTask = $this->pdo->prepare("insert into task (jobId, data) values(:jobId, :data)");
 		$this->stmtCloseTask = $this->pdo->prepare("update task set status = :status where id = :id");
