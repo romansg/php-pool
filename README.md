@@ -57,7 +57,7 @@ The first worker will perform half of the pending tasks and the second one will 
 You can split task processing in as many parts as you want or as system resources permit. To facilitate the splitting use a broker:
 
 ```php
-$broker = new \Pool\Broker($bgprocess, $parts);
+$broker = new \Pool\Broker($bgprocess);
 $broker->execute($jobId, count($tasks), $parts);
 ```
 
