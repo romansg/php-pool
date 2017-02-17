@@ -31,13 +31,15 @@ $bgprocess = new \Pool\BgProcess('/usr/local/bin/php worker.php');
 $bgprocess->execute($jobId, count($tasks));
 ```
 
-$bgprocess is instantiated with a call to the php executable passing the worker script as an argument. The execute method receives the script's arguments, in this case, the job's id and the number of tasks to be processed. The worker script should default the second argument to all tasks, so we could simply code:
+$bgprocess is instantiated with the path to the php executable passing the worker script as an argument. The execute method receives the script's arguments, in this case, the job's id and the number of tasks to be processed. The worker script should default the second argument to all tasks, so we could simply code:
 
 ```php
 $bgprocess->execute($jobId);
 ```
 
 if we want to perform all job's tasks in a row.
+
+The important thing here is that control execution returns immediately after the execute method without having to wait for the background script to finish its job.
 
 ### Using a broker to split the process
 
